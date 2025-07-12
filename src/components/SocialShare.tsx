@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Share2, Twitter, Facebook, Instagram, Copy } from 'lucide-react';
+import { Twitter, Facebook, Copy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface SocialShareProps {
@@ -57,27 +57,6 @@ const SocialShare: React.FC<SocialShareProps> = ({
     window.open(facebookUrl, '_blank', 'width=550,height=420');
   };
 
-  const shareViaWebShare = async () => {
-    if (navigator.share) {
-      try {
-        console.log('Attempting native share with:', { title: 'FLAMES Game Result', text: shareText, url: shareUrl });
-        await navigator.share({
-          title: 'FLAMES Game Result',
-          text: shareText,
-          url: shareUrl,
-        });
-        console.log('Native share successful');
-      } catch (err) {
-        console.error('Share failed:', err);
-        // Fallback to copy to clipboard
-        copyToClipboard();
-      }
-    } else {
-      console.log('Native share not supported, using clipboard');
-      copyToClipboard();
-    }
-  };
-
   return (
     <div className="bg-white/60 rounded-xl p-6 space-y-4">
       <div className="text-center">
@@ -90,16 +69,6 @@ const SocialShare: React.FC<SocialShareProps> = ({
       </div>
 
       <div className="flex flex-wrap gap-3 justify-center">
-        {/* Native Web Share (mobile) */}
-        <Button
-          onClick={shareViaWebShare}
-          className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white flex items-center gap-2"
-          size="sm"
-        >
-          <Share2 className="w-4 h-4" />
-          Share
-        </Button>
-
         {/* Twitter */}
         <Button
           onClick={shareToTwitter}
