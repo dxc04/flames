@@ -47,26 +47,33 @@ const SocialShare: React.FC<SocialShareProps> = ({
 
   const shareToTwitter = () => {
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+    console.log('Opening Twitter share:', twitterUrl);
     window.open(twitterUrl, '_blank', 'width=550,height=420');
   };
 
   const shareToFacebook = () => {
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&hashtag=${encodeURIComponent('#FLAMES')}&quote=${encodeURIComponent(shareText)}`;
+    console.log('Opening Facebook share:', facebookUrl);
     window.open(facebookUrl, '_blank', 'width=550,height=420');
   };
 
   const shareViaWebShare = async () => {
     if (navigator.share) {
       try {
+        console.log('Attempting native share with:', { title: 'FLAMES Game Result', text: shareText, url: shareUrl });
         await navigator.share({
           title: 'FLAMES Game Result',
           text: shareText,
           url: shareUrl,
         });
+        console.log('Native share successful');
       } catch (err) {
-        console.log('Share canceled or failed');
+        console.error('Share failed:', err);
+        // Fallback to copy to clipboard
+        copyToClipboard();
       }
     } else {
+      console.log('Native share not supported, using clipboard');
       copyToClipboard();
     }
   };
