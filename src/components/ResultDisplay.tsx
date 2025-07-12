@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
+import SocialShare from './SocialShare';
 
 interface ResultDisplayProps {
   result: string;
@@ -80,6 +81,13 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({
               </div>
             ))}
           </div>
+
+          <SocialShare
+            result={result}
+            flamesMap={flamesMap}
+            name1={name1}
+            name2={name2}
+          />
         </div>
       </CardContent>
     </Card>
