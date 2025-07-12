@@ -46,13 +46,14 @@ const SocialShare: React.FC<SocialShareProps> = ({
   };
 
   const shareToTwitter = () => {
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
     console.log('Opening Twitter share:', twitterUrl);
     window.open(twitterUrl, '_blank', 'width=550,height=420');
   };
 
   const shareToFacebook = () => {
-    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&hashtag=${encodeURIComponent('#FLAMES')}&quote=${encodeURIComponent(shareText)}`;
+    // Use a simpler Facebook share approach that includes the text
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareText)}`;
     console.log('Opening Facebook share:', facebookUrl);
     window.open(facebookUrl, '_blank', 'width=550,height=420');
   };
