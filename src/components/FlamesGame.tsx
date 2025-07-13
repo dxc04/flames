@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
@@ -7,10 +7,13 @@ import { Heart, Sparkles } from 'lucide-react';
 import NameDisplay from './NameDisplay';
 import FlamesWheel from './FlamesWheel';
 import ResultDisplay from './ResultDisplay';
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { set } from 'date-fns';
 
 const FlamesGame = () => {
-  const [name1, setName1] = useState('');
-  const [name2, setName2] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [name1, setName1] = useState(searchParams.get('name1') || '');
+  const [name2, setName2] = useState(searchParams.get('name2') || '');
   const [gameState, setGameState] = useState('input'); // 'input', 'calculating', 'result'
   const [processedNames, setProcessedNames] = useState({ name1: [], name2: [] });
   const [commonLetters, setCommonLetters] = useState([]);
@@ -25,6 +28,8 @@ const FlamesGame = () => {
     E: { word: 'Enemies', color: 'text-gray-500', emoji: '⚔️' },
     S: { word: 'Siblings', color: 'text-green-500', emoji: '👶' }
   };
+
+  const calculateBtnRef = React.useRef(null);
 
   const calculateFlames = () => {
     if (!name1.trim() || !name2.trim()) return;
@@ -81,6 +86,7 @@ const FlamesGame = () => {
     setTimeout(() => {
       setResult(currentFlames[0]);
       setGameState('result');
+      setSearchParams({ name1, name2 }); // Update URL with names
     }, 3000);
   };
 
@@ -93,6 +99,17 @@ const FlamesGame = () => {
     setRemainingCount(0);
     setResult('');
   };
+
+  let navigate = useNavigate(); 
+  const redirectReset = () =>{ 
+    window.location.href = '/'
+  }
+
+  useEffect(() => {  
+    if (name1 != '' && name2 != '' && calculateBtnRef.current) {
+      calculateBtnRef.current.click();
+    }
+  }, []);
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -138,6 +155,7 @@ const FlamesGame = () => {
                 </div>
               </div>
               <Button
+                ref={calculateBtnRef}
                 onClick={calculateFlames}
                 disabled={!name1.trim() || !name2.trim()}
                 className="w-full bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white py-4 text-lg font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
@@ -172,7 +190,7 @@ const FlamesGame = () => {
           />
           <div className="text-center">
             <Button
-              onClick={resetGame}
+              onClick={redirectReset}
               className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-8 py-3 text-lg font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105"
             >
               🎮 Play Again
