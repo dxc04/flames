@@ -255,7 +255,7 @@ const FlamesGame = () => {
             </div>
         </div>
 
-        {/* Advertisement Section */}
+        {/* Advertisement Section 
         <div className="max-w-2xl mx-auto mb-12">
             <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-4 text-center text-gray-500">
 
@@ -263,7 +263,7 @@ const FlamesGame = () => {
                 <p className="text-xs mt-1">300x250 or responsive ad unit</p>
             </div>
         </div>
-
+        */} 
         {/* FAQ Section */}
         <div className="mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
