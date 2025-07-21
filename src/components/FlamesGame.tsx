@@ -116,8 +116,20 @@ const FlamesGame = () => {
     <div className="container mx-auto px-4 py-8 max-w-5xl">
       {/* Header */}
       <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-6">
-              Discover Your Future: The Ultimate Online FLAMES Calculator!
+                <div className="text-center mb-8">
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <Heart className="text-pink-500 w-8 h-8" />
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
+            FLAMES
+          </h1>
+          <Sparkles className="text-purple-500 w-8 h-8" />
+        </div>
+        <p className="text-sm text-gray-500 mt-2">
+          Friends • Lovers • Affection • Marriage • Enemies • Siblings/Sweathearts
+        </p>
+      </div>
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-6">
+              Discover Your Relationship Destiny: The Ultimate Online FLAMES Calculator!
           </h1>
           <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed mb-4">
               Remember whispering a crush's name, scribbling on the back of a notebook, and anxiously counting letters to predict your destiny? That classic pen-and-paper game, FLAMES, was a rite of passage for all of us.
@@ -130,21 +142,7 @@ const FlamesGame = () => {
           </p>
       </div>
 
-      <div className="text-center mb-8">
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <Heart className="text-pink-500 w-8 h-8" />
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
-            FLAMES
-          </h1>
-          <Sparkles className="text-purple-500 w-8 h-8" />
-        </div>
-        <p className="text-lg text-gray-600 font-medium">
-          Discover your relationship destiny!
-        </p>
-        <p className="text-sm text-gray-500 mt-2">
-          Friends • Lovers • Affection • Marriage • Enemies • Siblings
-        </p>
-      </div>
+
 
       {gameState === 'input' && (
         <Card className="bg-white/70 backdrop-blur-sm shadow-xl border-0 mb-8">
@@ -204,10 +202,10 @@ const FlamesGame = () => {
             name1={name1}
             name2={name2}
           />
-          <div className="text-center">
+          <div className="text-center mb-8">
             <Button
               onClick={redirectReset}
-              className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-8 py-3 text-lg font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105"
+              className="mb-16 bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-8 py-3 text-lg font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105"
             >
               🎮 Play Again
             </Button>
@@ -216,7 +214,7 @@ const FlamesGame = () => {
       )}
 
       {/* How It Works Section */}
-        <div className="mb-16">
+        <div className="">
             <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
                 How Does It Work? The Magic Behind the Game
             </h2>
